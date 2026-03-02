@@ -1,4 +1,8 @@
-# Data Annotation Management Service
+### Data Annotation Management Service
+Production-style REST API built with FastAPI and SQLAlchemy.  
+Containerized with Docker and tested with PyTest + GitHub Actions CI.  
+
+🔗 https://github.com/isaiahehlert/data-annotation-service
 
 ## Run locally
 python3 -m venv .venv
