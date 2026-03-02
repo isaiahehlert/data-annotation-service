@@ -179,4 +179,3 @@ Design Notes
 	•	Uses SQL aggregation for statistics
 	•	Follows RESTful conventions with appropriate status codes
 	•	Designed for clarity, correctness, and maintainability
-Now when someone lands on the repo, it reads like backend work — not an interview artifact.
