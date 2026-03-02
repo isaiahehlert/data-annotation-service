@@ -104,22 +104,23 @@ Returns:
 
 ## Running Locally
 
-```bash
+```
+bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
-
+```
 Swagger UI:
 http://localhost:8000/docs
 
 ⸻
 
 Running with Docker
-
+```
 docker build -t annotation-service .
 docker run -p 8000:8000 annotation-service
-
+```
 Access:
 http://localhost:8000/docs
 
