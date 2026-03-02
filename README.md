@@ -109,3 +109,73 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+
+Swagger UI:
+http://localhost:8000/docs
+
+⸻
+
+Running with Docker
+
+docker build -t annotation-service .
+docker run -p 8000:8000 annotation-service
+
+Access:
+http://localhost:8000/docs
+
+⸻
+
+Example Usage
+
+Create a project:
+```
+curl -X POST http://localhost:8000/projects \
+-H "Content-Type: application/json" \
+-d '{"name":"demo","description":"test"}'
+```
+Create tasks:
+```
+curl -X POST http://localhost:8000/projects/1/tasks \
+-H "Content-Type: application/json" \
+-d '{"tasks":[{"input_data":{"text":"hello"}}]}'
+```
+Submit annotation:
+```
+curl -X POST http://localhost:8000/tasks/1/annotations \
+-H "Content-Type: application/json" \
+-d '{"annotator":"alice","annotation_data":{"label":"positive"}}'
+```
+Get project statistics:
+```
+curl http://localhost:8000/projects/1/stats
+```
+
+⸻
+
+Testing
+
+Run test suite:
+```
+pytest -q
+```
+Tests cover:
+	•	Happy path workflows
+	•	Duplicate project validation
+	•	Non-existent resource handling
+	•	Task lifecycle transitions
+
+⸻
+
+CI
+
+GitHub Actions workflow automatically runs tests on push.
+
+⸻
+
+Design Notes
+	•	Enforces unique project names (returns HTTP 400 on conflict)
+	•	Returns 404 for non-existent resources
+	•	Uses SQL aggregation for statistics
+	•	Follows RESTful conventions with appropriate status codes
+	•	Designed for clarity, correctness, and maintainability
+Now when someone lands on the repo, it reads like backend work — not an interview artifact.
